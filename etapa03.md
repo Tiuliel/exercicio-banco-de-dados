@@ -71,29 +71,43 @@ INNER JOIN professores ON professores.curso_id = cursos.id;
 ### 9) Faça uma consulta que mostre a quantidade de alunos que cada curso possui. Classifique os resultados em ordem descrecente de acordo com a quantidade de alunos.
 
 ```sql
-
+SELECT cursos.titulo,
+COUNT(alunos.curso_id)
+FROM cursos 
+INNER JOIN alunos ON alunos.curso_id = cursos.id  
+GROUP BY cursos.titulo 
+ORDER BY "qtd de alunos" DESC;
 ```
 
 ### 10) Faça uma consulta que mostre o nome dos alunos, suas notas, médias, e o título dos cursos que fazem. Devem ser considerados somente os alunos de Front-End e Back-End. Mostre os resultados classificados pelo nome do aluno.
 
 ```sql
-
+SELECT alunos.nome,cursos.titulo, alunos.primeira_nota, alunos.segunda_nota, 
+ROUND((primeira_nota + segunda_nota)/2, 2) AS 'Média'
+FROM alunos 
+INNER JOIN cursos ON alunos.curso_id = cursos.id 
+WHERE cursos.id 
+IN(1, 2)
+ORDER BY (nome)
 ```
 
 ### 11) Faça uma consulta que altere o nome do curso de Figma para Adobe XD e sua carga horária de 10 para 15.
 
 ```sql
-
+UPDATE cursos SET titulo = 'Adobe XD', cargaHoraria = 15 WHERE id = 4;
 ```
 
 ### 12) Faça uma consulta que exclua um aluno do curso de Redes de Computadores e um aluno do curso de UX/UI.
 
 ```sql
-
+DELETE FROM alunos WHERE id IN(5, 3);
 ```
 
 ### 13) Faça uma consulta que mostre a lista de alunos atualizada e o título dos cursos que fazem, classificados pelo nome do aluno.
 
 ```sql
-
+SELECT alunos.nome, cursos.titulo 
+FROM alunos
+INNER JOIN cursos ON alunos.curso_id = cursos.id 
+ORDER BY nome 
 ```
