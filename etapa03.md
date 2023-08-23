@@ -28,7 +28,7 @@ ORDER BY titulo ASC;
 ```sql
 SELECT nome, area_atuacao
 FROM professores
-WHERE area_atuacao = 2;
+WHERE area_atuacao LIKE "%Desenvolvimento%";
 ```
 
 ### 5) Faça uma consulta que mostre a quantidade de professores que cada área ("design", "infra", "desenvolvimento") possui.
